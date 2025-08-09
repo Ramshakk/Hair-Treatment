@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Treatments | ANAGEN Clinic</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a4b5c;
+            --secondary-color: #2c6e7e;
+            --accent-color: #d4af37;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --background-light: #f8faf9;
+            --white: #ffffff;
+            --shadow-light: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-heavy: 0 20px 60px rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, #1a4b5c 0%, #2c6e7e 100%);
+            --gradient-accent: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow-light);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 75, 92, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: var(--white) !important;
+            padding: 14px 28px !important;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            background: linear-gradient(135deg, #0f3a47 0%, #1d5561 100%);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            opacity: 0;
+            animation: slideInFromLeft 1s ease 0.2s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            opacity: 0;
+            animation: slideInFromLeft 1s ease 0.4s forwards;
+        }
+
+        .hero-cta {
+            background: var(--gradient-accent);
+            color: var(--text-dark);
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            animation: slideInFromLeft 1s ease 0.6s forwards;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            animation: slideInFromRight 1s ease 0.8s forwards;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-image-placeholder i {
+            font-size: 80px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: var(--background-light);
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .about-feature i {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        .about-feature div h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .about-feature div p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="800" cy="300" r="80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="300" cy="700" r="120" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="700" cy="800" r="60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+        }
+
+        .about-image-placeholder i {
+            font-size: 100px;
+            color: rgba(255,255,255,0.6);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 100px 0;
+            background: var(--background-light);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .result-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-image i {
+            font-size: 60px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .result-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gradient-accent);
+            color: var(--text-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .result-content {
+            padding: 30px;
+        }
+
+        .result-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .result-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .result-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .result-stat {
+            text-align: center;
+        }
+
+        .result-stat .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .result-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--background-light);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            padding-top: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+
+        .filter-btn {
+            background: var(--white);
+            border: 2px solid #e8f4f7;
+            color: var(--text-light);
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Treatment Cards */
+        .treatments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .treatment-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid #f0f5f7;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .treatment-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .treatment-image i {
+            font-size: 60px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .treatment-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+
+        .bestseller-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient-accent);
+            color: var(--text-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .treatment-content {
+            padding: 35px;
+        }
+
+        .treatment-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .treatment-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .treatment-features {
+            margin-bottom: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .feature-item i {
+            color: var(--accent-color);
+            font-size: 12px;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price i {
+            color: var(--accent-color);
+        }
+
+        .treatment-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .learn-more-btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 14px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            flex: 1;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .learn-more-btn:hover {
+            background: linear-gradient(135deg, #0f3a47 0%, #1d5561 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .book-btn {
+            background: var(--gradient-accent);
+            color: var(--text-dark);
+            padding: 14px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="500" cy="200" r="300" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/><circle cx="200" cy="600" r="200" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/><circle cx="800" cy="700" r="150" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>');
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: var(--gradient-accent);
+            color: var(--text-dark);
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f1419;
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            color: #a0a9b8;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer-section h4 {
+            margin-bottom: 25px;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #a0a9b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2a3038;
+            padding-top: 30px;
+            text-align: center;
+            color: #a0a9b8;
+        }
+
+        /* Animations */
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .nav-container {
+                padding: 0 30px;
+            }
+            
+            .hero-container, .container, .stats-container {
+                padding: 0 30px;
+            }
+            
+            .treatments-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: var(--shadow-medium);
+                gap: 20px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2, .about-text h2 {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .treatments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .filter-btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container, .hero-container, .container, .stats-container {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .treatments-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 90px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-accent);
+            z-index: 999;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                ANAGEN
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#treatments" class="nav-link">Treatments</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#results" class="nav-link">Results</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#consultation" class="nav-link nav-cta">Book Consultation</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Advanced Hair Restoration</h1>
+                    <p>Transform your appearance with our world-class hair treatments. Our experienced medical team uses cutting-edge technology to deliver natural, lasting results that boost your confidence.</p>
+                    <a href="#treatments" class="hero-cta">
+                        <i class="fas fa-calendar-check"></i>
+                        Start Your Journey
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-placeholder">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item loading">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Successful Procedures</div>
+                </div>
+                <div class="stat-item loading">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Patient Satisfaction</div>
+                </div>
+                <div class="stat-item loading">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item loading">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Medical Experts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>World-Class Hair Restoration Excellence</h2>
+                    <p>At ANAGEN Clinic, we combine decades of medical expertise with cutting-edge technology to deliver exceptional hair restoration results. Our team of internationally trained specialists is committed to providing personalized treatment plans that address your unique needs.</p>
+                    <p>We understand that hair loss affects more than just your appearance—it impacts your confidence and quality of life. That's why we've created a comprehensive approach that not only restores your hair but also revitalizes your self-esteem.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>Medical Excellence</h4>
+                                <p>Board-certified surgeons with international training and recognition</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-microscope"></i>
+                            <div>
+                                <h4>Advanced Technology</h4>
+                                <p>State-of-the-art equipment and innovative treatment techniques</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Personalized Care</h4>
+                                <p>Tailored treatment plans designed specifically for your goals</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>Safety First</h4>
+                                <p>Highest medical standards with comprehensive aftercare support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transformative Results</h2>
+                <p>See the remarkable transformations our patients have achieved with our advanced hair restoration treatments.</p>
+            </div>
+            <div class="results-grid">
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">6 Months</div>
+                        <i class="fas fa-before-after"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>FUE Hair Transplant</h3>
+                        <p>Complete hairline restoration with natural density and perfect growth direction. Patient achieved full coverage with 3,200 grafts.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">3,200</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">95%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">6</span>
+                                <span class="label">Months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">4 Months</div>
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>DHI Hair Transplant</h3>
+                        <p>Crown area restoration using Direct Hair Implantation technique. Maximum density achieved with minimal downtime.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">2,800</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">98%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">4</span>
+                                <span class="label">Months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">3 Months</div>
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>Female Hair Restoration</h3>
+                        <p>Comprehensive treatment combining PRP therapy and micro-transplantation for female pattern hair loss.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">1,500</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">92%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">3</span>
+                                <span class="label">Months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">8 Weeks</div>
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>Beard Transplantation</h3>
+                        <p>Full beard restoration creating natural density and perfect facial hair design with artistic precision.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">2,200</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">97%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">8</span>
+                                <span class="label">Weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">6 Weeks</div>
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>Eyebrow Restoration</h3>
+                        <p>Precision eyebrow reconstruction with micro-techniques creating natural hair direction and perfect arch.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">400</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">99%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">6</span>
+                                <span class="label">Weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="result-image">
+                        <div class="result-badge">12 Months</div>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>Combined Treatment</h3>
+                        <p>Multi-session approach combining transplant, PRP, and laser therapy for maximum hair density restoration.</p>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="number">4,500</span>
+                                <span class="label">Grafts</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">96%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="number">12</span>
+                                <span class="label">Months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Real stories from patients who transformed their lives with ANAGEN Clinic.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        The results exceeded my expectations completely. The team at ANAGEN was professional, caring, and the procedure was much more comfortable than I anticipated. Six months later, I have a full head of natural-looking hair that has completely changed my confidence.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MK</div>
+                        <div class="author-info">
+                            <h4>Michael K.</h4>
+                            <p>FUE Hair Transplant Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        As a woman dealing with hair loss, I was hesitant about treatment options. The doctors at ANAGEN created a personalized plan that addressed my specific needs. The PRP therapy combined with micro-transplantation gave me back the hair density I thought I'd lost forever.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Female Hair Restoration Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        The beard transplant was a game-changer for me. I could never grow a full beard naturally, but now I have the facial hair I always wanted. The design looks completely natural and the growth pattern is perfect. I couldn't be happier with the results.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DJ</div>
+                        <div class="author-info">
+                            <h4>David J.</h4>
+                            <p>Beard Transplant Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        After years of using makeup to fill in my sparse eyebrows, the eyebrow restoration at ANAGEN gave me the freedom to wake up with perfect brows every day. The precision and artistry of the procedure is truly remarkable. Worth every penny.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ER</div>
+                        <div class="author-info">
+                            <h4>Emma R.</h4>
+                            <p>Eyebrow Restoration Patient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Section -->
+    <section class="filter-section" id="treatments">
+        <div class="container">
+            <div class="section-header">
+                <h2>Premium Hair Solutions</h2>
+                <p>Discover our comprehensive range of advanced hair restoration treatments, each designed to address your specific needs with precision and care.</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Treatments</button>
+                <button class="filter-btn" data-filter="thickening">Hair Thickening</button>
+                <button class="filter-btn" data-filter="growth">Hair Growth</button>
+                <button class="filter-btn" data-filter="correction">Hair Line Correction</button>
+                <button class="filter-btn" data-filter="mild">Mild Hair Loss</button>
+                <button class="filter-btn" data-filter="strong">Strong Hair Loss</button>
+                <button class="filter-btn" data-filter="female">Female Hair Loss</button>
+            </div>
+
+            <div class="treatments-grid">
+                <!-- Hair Transplant -->
+                <div class="treatment-card fade-in" data-category="strong correction thickening">
+                    <div class="bestseller-badge">Most Popular</div>
+                    <div class="treatment-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>FUE Hair Transplant</h3>
+                        <p>The gold standard for permanent hair restoration. Our advanced Follicular Unit Extraction technique ensures natural results with minimal downtime.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Permanent results</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>No linear scarring</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural hairline design</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 208.–/month
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRP Treatment -->
+                <div class="treatment-card fade-in" data-category="growth mild female">
+                    <div class="treatment-image">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>PRP Hair Therapy</h3>
+                        <p>Harness your body's natural healing power with Platelet-Rich Plasma therapy. A non-surgical solution for hair regeneration and scalp health.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural treatment</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>No side effects</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Stimulates growth</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 390.–/session
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mesotherapy -->
+                <div class="treatment-card fade-in" data-category="growth thickening mild female">
+                    <div class="treatment-image">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Mesotherapy Treatment</h3>
+                        <p>Targeted injection therapy delivering essential nutrients, vitamins, and growth factors directly to hair follicles for optimal hair health.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Nutrient delivery</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Improves circulation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Strengthens follicles</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 295.–/Session
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beard Transplant -->
+                <div class="treatment-card fade-in" data-category="thickening correction">
+                    <div class="treatment-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Beard Transplantation</h3>
+                        <p>Achieve the perfect beard with our precision sapphire FUE technique. Create density, fill patches, or design your ideal facial hair style.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Custom design</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural growth pattern</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Permanent results</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 125.–/month
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eyebrow Transplant -->
+                <div class="treatment-card fade-in" data-category="thickening correction">
+                    <div class="treatment-image">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Eyebrow Restoration</h3>
+                        <p>Restore naturally beautiful eyebrows with our micro-transplantation technique. Perfect for over-plucking, genetics, or medical hair loss.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Artistic shaping</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Micro-technique</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural direction</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 104.–/month
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHI Hair Transplant -->
+                <div class="treatment-card fade-in" data-category="strong correction thickening">
+                    <div class="treatment-image">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>DHI Hair Transplant</h3>
+                        <p>Direct Hair Implantation - the most advanced technique available. Maximum density with precision placement for undetectable results.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Maximum density</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Precision placement</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Faster healing</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 275.–/month
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scalp Micropigmentation -->
+                <div class="treatment-card fade-in" data-category="correction strong">
+                    <div class="treatment-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Scalp Micropigmentation</h3>
+                        <p>Non-surgical cosmetic tattooing that creates the illusion of fuller hair and defined hairlines. Perfect for balding or thinning areas.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Immediate results</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Non-surgical</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Low maintenance</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 150.–/session
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laser Therapy -->
+                <div class="treatment-card fade-in" data-category="growth mild female">
+                    <div class="treatment-image">
+                        <i class="fas fa-laser-pointer"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Low-Level Laser Therapy</h3>
+                        <p>FDA-cleared laser treatment that stimulates cellular activity and promotes natural hair growth. Safe, effective, and non-invasive.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>FDA approved</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Non-invasive</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Cellular stimulation</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 75.–/session
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical Supplements -->
+                <div class="treatment-card fade-in" data-category="growth thickening mild female">
+                    <div class="treatment-image">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Medical Hair Supplements</h3>
+                        <p>Pharmaceutical-grade nutritional supplements specifically formulated to support hair health, growth, and strength from within.</p>
+                        <div class="treatment-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Medical grade</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Essential nutrients</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Daily support</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <i class="fas fa-tag"></i>
+                            from CHF 89.–/month
+                        </div>
+                        <div class="treatment-actions">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="book-btn"><i class="fas fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="consultation">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Hair?</h2>
+                <p>Take the first step towards your hair restoration journey with a complimentary consultation from our expert medical team.</p>
+                <a href="#contact" class="cta-btn">
+                    <i class="fas fa-calendar-check"></i>
+                    Book Free Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>ANAGEN Clinic</h3>
+                    <p>Leading hair restoration clinic providing world-class treatments with state-of-the-art technology and experienced medical professionals. Your journey to confidence starts here.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Treatments</h4>
+                    <ul>
+                        <li><a href="#">Hair Transplant</a></li>
+                        <li><a href="#">Beard Transplant</a></li>
+                        <li><a href="#">Eyebrow Transplant</a></li>
+                        <li><a href="#">PRP Therapy</a></li>
+                        <li><a href="#">Mesotherapy</a></li>
+                        <li><a href="#">Laser Therapy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Doctors</a></li>
+                        <li><a href="#">Results Gallery</a></li>
+                        <li><a href="#">Patient Reviews</a></li>
+                        <li><a href="#">Medical Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone"></i> +41 44 123 45 67</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@anagen.clinic</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Zurich, Switzerland</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</a></li>
+                        <li><a href="#"><i class="fas fa-calendar"></i> Book Consultation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ANAGEN Clinic. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Medical Disclaimer</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const treatmentCards = document.querySelectorAll('.treatment-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                treatmentCards.forEach((card, index) => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories && categories.includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 90; // Account for fixed header
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .loading').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Treatment Card Interactions
+        document.querySelectorAll('.learn-more-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.treatment-card');
+                const treatmentName = card.querySelector('h3').textContent;
+                
+                // Create modal effect
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                    // In a real implementation, this would open a detailed modal or page
+                    alert(`Detailed information about ${treatmentName} would be displayed here. This would typically open a comprehensive treatment page with before/after photos, procedure details, recovery information, and patient testimonials.`);
+                }, 150);
+            });
+        });
+
+        // Book buttons
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.treatment-card');
+                const treatmentName = card.querySelector('h3').textContent;
+                
+                btn.style.transform = 'scale(0.9) rotate(360deg)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1) rotate(0deg)';
+                    // In a real implementation, this would open a booking calendar
+                    alert(`Booking consultation for ${treatmentName}. This would open a calendar system to schedule your appointment.`);
+                }, 300);
+            });
+        });
+
+        // Enhanced Card Hover Effects
+        document.querySelectorAll('.treatment-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const image = card.querySelector('.treatment-image');
+                image.style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const image = card.querySelector('.treatment-image');
+                image.style.transform = 'scale(1)';
+            });
+        });
+
+        // Navbar Background on Scroll
+        const header = document.querySelector('.header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'var(--white)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Stats Counter Animation
+        const statsNumbers = document.querySelectorAll('.stat-number');
+        let statsAnimated = false;
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    animateStats();
+                }
+            });
+        });
+
+        function animateStats() {
+            statsNumbers.forEach((stat, index) => {
+                const finalValue = stat.textContent;
+                const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                const suffix = finalValue.replace(/\d/g, '');
+                
+                let currentValue = 0;
+                const increment = numericValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= numericValue) {
+                        currentValue = numericValue;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(currentValue) + suffix;
+                }, 50);
+            });
+        }
+
+        // Initialize stats observer
+        statsObserver.observe(document.querySelector('.stats'));
+
+        // Add loading animation delay for treatment cards
+        document.querySelectorAll('.treatment-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // CTA Button Enhanced Animation
+        document.querySelectorAll('.cta-btn, .hero-cta').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Performance optimization: Throttle scroll events
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(() => {
+                // Scroll-dependent functions here
+            }, 10);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
